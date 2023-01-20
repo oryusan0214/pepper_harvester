@@ -1,0 +1,6 @@
+FROM mysql:latest
+
+COPY mysql/sql/init.sql /docker-entrypoint-initdb.d/01_create_db.sql
+COPY conf/my.conf /etc/mysql/conf.d/my.cnf
+
+CMD ["mysqld"]
