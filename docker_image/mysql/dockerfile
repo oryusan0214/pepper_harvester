@@ -1,6 +1,8 @@
 FROM mysql:latest
 
-COPY mysql/sql/init.sql /docker-entrypoint-initdb.d/01_create_db.sql
-COPY conf/my.conf /etc/mysql/conf.d/my.cnf
+COPY mysql/sql/ /docker-entrypoint-initdb.d/01_create_db.sql
+COPY mysql/conf.d/ //etc/mysql/conf.d/01_create_db.cnf
 
-CMD ["mysqld"]
+RUN chmod 644 /etc/mysql/conf.d/my.cnf
+
+CMD ["mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]

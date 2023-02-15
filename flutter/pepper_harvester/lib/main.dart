@@ -26,18 +26,15 @@ class MyApp extends StatelessWidget {
 
 class DragHandleExample extends StatefulWidget {
   const DragHandleExample({Key? key, required String title}) : super(key: key);
-
   @override
   State createState() => _DragHandleExample();
 }
 
 class _DragHandleExample extends State<DragHandleExample> {
   late List<DragAndDropList> _contents;
-
   @override
   void initState() {
     super.initState();
-
     _contents = List.generate(4, (index) {
       return DragAndDropList(
         header: Column(
@@ -105,7 +102,7 @@ class _DragHandleExample extends State<DragHandleExample> {
       appBar: AppBar(
         title: const Text('Drag Handle'),
       ),
-      drawer: const NavigationDrawer(),
+      drawer: const NavigationDrawer1(),
       body: DragAndDropLists(
         children: _contents,
         onItemReorder: _onItemReorder,
@@ -154,7 +151,6 @@ class _DragHandleExample extends State<DragHandleExample> {
           ),
         ),
       ),
-      
     );
   }
 

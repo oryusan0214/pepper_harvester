@@ -1,34 +1,38 @@
-CREATE DATABASE agreast-db DEFAULT CHARACTER SET 'utf8mb4';
-USE agreast-db;
-CREATE TABLE agrist (
+CREATE DATABASE agreastd DEFAULT CHARACTER SET 'utf8mb4';
+USE test;
+CREATE TABLE agrists (
   id  INT AUTO_INCREMENT NOT NULL,
-  name char(30),
-  possession_id int,
+  username char(30),
   PRIMARY KEY (id)
 );
 
-INSERT INTO agrist (name,possession_id) VALUES ("yamadaryunosuke",1);
+INSERT INTO agrists (username) VALUES ("yamadaryunosuke");
+INSERT INTO agrists (username) VALUES ("yamadaryunosuke1");
+INSERT INTO agrists (username) VALUES ("test");
 
-CREATE TABLE farmland(
+CREATE TABLE farmlands(
   id  INT AUTO_INCREMENT NOT NULL,
-  name char(30),
+  farmlandname char(30),
   PRIMARY KEY (id)
 );
 
-INSERT INTO farmland (name) VALUES ("農耕地A");
-INSERT INTO farmland (name) VALUES ("農耕地B");
+INSERT INTO farmlands (farmlandname) VALUES ("農耕地A");
+INSERT INTO farmlands (farmlandname) VALUES ("農耕地B");
+INSERT INTO farmlands (farmlandname) VALUES ("農耕地C");
 
-CREATE TABLE possession(
+CREATE TABLE possessions(
   id int AUTO_INCREMENT NOT NULL,
   agrist_id int,
   farmland_id int,
-  PRIMARY KEY (id,agrist_id,farmland_id)
+  PRIMARY KEY (id,agrist_id,farmland_id),
+  FOREIGN KEY(agrist_id) REFERENCES agrists(id),
+  FOREIGN KEY(farmland_id) REFERENCES farmlands(id)
 );
 
-INSERT INTO possession (agrist_id,farmland_id) VALUES (1,1);
-INSERT INTO possession (agrist_id,farmland_id)VALUES (1,2);
+INSERT INTO possessions (agrist_id,farmland_id) VALUES (1,1);
+INSERT INTO possessions (agrist_id,farmland_id)VALUES (1,2);
 
-CREATE TABLE temphum(
+CREATE TABLE temphums(
   id  INT AUTO_INCREMENT NOT NULL,
   farmland_id int,
   day date,
@@ -37,63 +41,69 @@ CREATE TABLE temphum(
   PRIMARY KEY (id)
 );
 
-INSERT INTO temphum(farmland_id,day,temp,humi) VALUES (1,'2023/01/17',20.3,40);
-INSERT INTO temphum(farmland_id,day,temp,humi) VALUES (2,'2023/01/17',25,72);
+INSERT INTO temphums(farmland_id,day,temp,humi) VALUES (1,'2023/01/17',20.3,40);
+INSERT INTO temphums(farmland_id,day,temp,humi) VALUES (2,'2023/01/17',25,72);
 
 CREATE TABLE crops(
   id INT AUTO_INCREMENT NOT NULL,
-  name char(30),
+  cropsname char(30),
   PRIMARY KEY (id)
 );
 
-INSERT INTO crops (name) VALUES ("ピーマン");
+INSERT INTO crops (cropsname) VALUES ("ピーマン");
 
-CREATE TABLE planting(
+CREATE TABLE plantings(
   id  int AUTO_INCREMENT NOT NULL,
   farmland_id int,
   crops_id int,
   startday date,
-  PRIMARY KEY(id)
+  PRIMARY KEY(id,farmland_id,crops_id),
+  FOREIGN KEY(crops_id) REFERENCES crops(id),
+  FOREIGN KEY(farmland_id) REFERENCES farmlands(id)
 );
-INSERT INTO planting (farmland_id,startday,crops_id) VALUES ( 1,'2022/12/28',1 );
-INSERT INTO planting (farmland_id,startday,crops_id) VALUES ( 2,'2022/12/27',1 );
+INSERT INTO plantings (farmland_id,startday,crops_id) VALUES ( 1,'2022/12/28',1 );
+INSERT INTO plantings (farmland_id,startday,crops_id) VALUES ( 2,'2022/12/27',1 );
 
-CREATE TABLE machine(
+CREATE TABLE machines(
   id  INT AUTO_INCREMENT NOT NULL,
   machine_num char(10),
-  PRIMARY KEY(id)
+  farmland_id int,
+  PRIMARY KEY(id),
+  FOREIGN KEY(farmland_id)REFERENCES farmlands(id)
 );
-INSERT INTO machine (machine_num)VALUES("123455678");
+INSERT INTO machines (machine_num,farmland_id)VALUES("123455678",1);
+INSERT INTO machines (machine_num,farmland_id)VALUES("000000000",1);
 
-CREATE TABLE photo(
+CREATE TABLE photos(
   id int AUTO_INCREMENT NOT NULL,
-  num int,
+  identifer int,
+  amount int,
   url char(100),
   PRIMARY KEY (id)
 );
-INSERT INTO photo (identifier,num,url) VALUES (1,9,"****//");
+INSERT INTO photos (identifer,amount,url) VALUES (1,9,"****//");
 
-CREATE TABLE harvest(
+CREATE TABLE harvests(
   id int AUTO_INCREMENT NOT NULL,
   machine_id int,
   amount int,
   photo_id int,
   day date,
   PRIMARY KEY (id,machine_id,photo_id),
-  FOREIGN KEY(machine_id) REFERENCES machine(id),
-  FOREIGN KEY(photo_id) REFERENCES photo(id)
+  FOREIGN KEY(machine_id) REFERENCES machines(id),
+  FOREIGN KEY(photo_id) REFERENCES photos(id)
 );
-INSERT INTO harvest (machine_id,photo_id,amount,day) VALUES (1,1,10,"2023/01/17");
+INSERT INTO harvests (machine_id,photo_id,amount,day) VALUES (1,1,10,"2023/01/17");
 
-CREATE TABLE unharvest(
+CREATE TABLE unharvests(
   id int AUTO_INCREMENT NOT NULL,
   machine_id int,
   amount int,
   photo_id int,
   day date,
   PRIMARY KEY (id,machine_id,photo_id),
-  FOREIGN KEY(machine_id) REFERENCES machine(id),
-  FOREIGN KEY(photo_id) REFERENCES photo(id)
+  FOREIGN KEY(machine_id) REFERENCES machines(id),
+  FOREIGN KEY(photo_id) REFERENCES photos(id)
 );
-INSERT INTO harvest (machine_id,photo_id,amount,day) VALUES (1,1,10,"2023/01/17");
+INSERT INTO unharvests (machine_id,photo_id,amount,day) VALUES (1,1,10,"2023/01/17");
 
