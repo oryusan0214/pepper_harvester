@@ -133,8 +133,8 @@ fluter:flutter 3.3.9
 - go  
 - GORMについて  
   > https://gorm.io/ja_JP/docs/connecting_to_the_database.html  
-http package  
-  > https://pkg.go.dev/net/http  
+  >>http package  
+  https://pkg.go.dev/net/http  
 - Ginについて  
 - 公式  
   > https://pkg.go.dev/github.com/gin-gonic/gin  
