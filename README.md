@@ -107,7 +107,8 @@ fluter:flutter 3.3.9
 
 ### 参考にしたサイト
 #### docker(test環境)
-    dockerについての概要  
+<br>
+   dockerについての概要  
 - https://matsuand.github.io/docs.docker.jp.onthefly/reference/  
    docker compose についての参考サイト  
 - 日本語版 https://docs.docker.jp/compose/compose-file/index.html?  
@@ -122,13 +123,13 @@ highlight=build
  - https://zenn.dev/re24_1986/articles/153cdc5db96dc0  
   composeに置ける環境変数の設定  
  - https://matsuand.github.io/docs.docker.jp.onthefly/compose/environment-variables/  
-  GOのORMについて  
- - https://qiita.com/gold-kou/items/45a95d61d253184b0f33  
+<br>
   逆引きSQL（参考）  
  - https://style.potepan.com/articles/25967.html  
  - https://www.sql-reference.com/  
   docker-compoe volumesのマウントのされ方について  
  - https://qiita.com/daemokra/items/322270091cf41a853226  
+ <br>
   go  
   GORMについて  
  - https://gorm.io/ja_JP/docs/connecting_to_the_database.html  
