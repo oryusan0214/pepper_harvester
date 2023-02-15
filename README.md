@@ -56,7 +56,7 @@
 
 #### フォルダー説明
 「～資料」フォルダーには設計の時に作成した資料が入っています。
-- API資料  
+- API資料[リンク](API資料)  
   APIの仕様について書いた資料があります。
 - DB資料  
   ER図やテーブル導出した時のExcel資料があります。
@@ -128,16 +128,16 @@ highlight=build
 
 <br>  
 
-  逆引きSQL（参考）  
+   逆引きSQL（参考）  
  - https://style.potepan.com/articles/25967.html  
  - https://www.sql-reference.com/  
-  docker-compoe volumesのマウントのされ方について  
+   docker-compoe volumesのマウントのされ方について  
  - https://qiita.com/daemokra/items/322270091cf41a853226  
 
  <br>  
- 
+
   go  
-  GORMについて  
+   GORMについて  
  - https://gorm.io/ja_JP/docs/connecting_to_the_database.html  
    http package  
  - https://pkg.go.dev/net/http  
