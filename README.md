@@ -109,13 +109,16 @@ fluter:flutter 3.3.9
 
 ### 参考にしたサイト  
 #### docker(test環境)  
+<br>
 dockerについての概要  
 - https://matsuand.github.io/docs.docker.jp.onthefly/reference/  
+<br>
 docker compose についての参考サイト  
-- 日本語版 https://docs.docker.jp/compose/compose-file/index.html?  
+- https://docs.docker.jp/compose/compose-file/index.html?  
+<br>
 .cnfファイルのエラー（読み取り専用にすることで読み込み可）
-- https://qiita.com/rabbitbeef/items/14433a2c0a6f85c3b476  
-highlight=build  
+- https://qiita.com/rabbitbeef/items/14433a2c0a6f85c3b476
+<br>
 mysql(test環境)(参考)  
  - https://jeannie-blog.online/docker-mysql-windows/  
 docker mysql 初期ログインの手引き  
