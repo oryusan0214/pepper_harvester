@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:drag_and_drop_lists/drag_and_drop_item.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_list.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
@@ -5,7 +7,36 @@ import 'package:flutter/material.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
 import 'package:flutter/material.dart';
 
+import 'package:http/.dart'.as http;
+import 'dart:convert';
+
 import 'navigation_drawer.dart';
+
+class UserFarmland{
+  final String Name;
+  final String Crops;
+  final String MachineNum;
+  
+  UserFarmland({
+    required this.Name,
+    required this.Crops,
+    required this.MachineNum,
+  })
+  factory UserFarmland.fromJson(Map<String,dynamic> json)=>UserFarmland(
+    Name: json["Name"],
+     Crops: json["CropsName"],
+      MachineNum: json["MachineNum"]
+      );
+      Map<String,dynamic> toJson()=>{
+        "Name":Name,
+        "CropsName":Crops,
+        "MachineNume":MachineNum,
+      };
+
+}
+UserFarmland userFarmlandModelFromJson(String str) => UserFarmland.fromJson(json.decode(str));
+String userFarmlandModelToJson(UserFarmland farmlandInfo)=>json.encode(farmlandInfo.toJson());
+
 void main() {
   runApp(const MyApp());
 }
@@ -32,6 +63,8 @@ class DragHandleExample extends StatefulWidget {
 
 class _DragHandleExample extends State<DragHandleExample> {
   late List<DragAndDropList> _contents;
+  late String username = "yamadaryunosuke";
+  
   @override
   void initState() {
     super.initState();
@@ -45,7 +78,8 @@ class _DragHandleExample extends State<DragHandleExample> {
                   padding: const EdgeInsets.only(left: 8, bottom: 4),
                   child: Text(
                     'Header $index',
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ),
               ],
@@ -57,7 +91,8 @@ class _DragHandleExample extends State<DragHandleExample> {
             child: Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                   child: Text(
                     'Sub $index.1',
                   ),
@@ -69,7 +104,8 @@ class _DragHandleExample extends State<DragHandleExample> {
             child: Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                   child: Text(
                     'Sub $index.2',
                   ),
@@ -81,7 +117,8 @@ class _DragHandleExample extends State<DragHandleExample> {
             child: Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                   child: Text(
                     'Sub $index.3',
                   ),
