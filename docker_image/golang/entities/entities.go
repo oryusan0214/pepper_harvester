@@ -1,12 +1,12 @@
 package entities
 
 
+
 type Agrist struct {
-	ID   uint   `gorm:"primaryKey"`
-	UserName string `gorm:"column:username"`
-	FarmlandID uint `gorm:"column:id"`
+	ID           uint   `gorm:"primaryKey"`
+	UserName     string `gorm:"column:username"`
+	FarmlandID   uint   `gorm:"column:id"`
 	FarmlandName string `gorm:"column:farmlandname"`
-	
 }
 
 type Possession struct {
@@ -15,13 +15,13 @@ type Possession struct {
 	FarmlandID string `gorm:"foreignKey:farmland_id"`
 }
 type Farmland struct {
-	Name string `gorm:"column:farmlandname"`
-	CropsName string `gorm:"column:cropsname"`
+	Name       string `gorm:"column:farmlandname"`
+	CropsName  string `gorm:"column:cropsname"`
 	MachineNum string `gorm:"columun:machine_num"`
 }
 type Temp_humi struct {
 	Narmlang_id int     `json:"farmland_id"`
-	Nay         string  `json:"day"`
+	Date        string  `json:"day"`
 	Nemp        float32 `json:"temp"`
 	Humi        float32 `json:"humi"`
 }
@@ -50,10 +50,11 @@ type Photo struct {
 	Url string `json:"url"`
 }
 
-//Json用
-
-type Msg struct {
-	Agrists   Agrist   `gorm:"foreignkey:agrist_id"`
-	Farmlands Farmland `gorm:"foreignkey:farmalnd_id"`
+// Json用
+type Temp struct {
+	Temp float32 `gorm:"column:temp"`
+	Humi float32 `gorm:"column:humi"`
 }
-
+type DayPhoto struct {
+	Url string `gorm:"column:url"`
+}

@@ -81,7 +81,10 @@ CREATE TABLE photos(
   url char(100),
   PRIMARY KEY (id)
 );
-INSERT INTO photos (identifer,amount,url) VALUES (1,9,"****//");
+INSERT INTO photos (identifer,amount,url) VALUES (1,1,"ピーマン.jpg");
+INSERT INTO photos (identifer,amount,url) VALUES (1,2,"ピーマン2.jpg");
+INSERT INTO photos (identifer,amount,url) VALUES (1,2,"ピーマン3.jpg");
+INSERT INTO photos (identifer,amount,url) VALUES (2,1,"シシトウ-min.jpg");
 
 CREATE TABLE harvests(
   id int AUTO_INCREMENT NOT NULL,
@@ -90,10 +93,11 @@ CREATE TABLE harvests(
   photo_id int,
   day date,
   PRIMARY KEY (id,machine_id,photo_id),
-  FOREIGN KEY(machine_id) REFERENCES machines(id),
   FOREIGN KEY(photo_id) REFERENCES photos(id)
 );
 INSERT INTO harvests (machine_id,photo_id,amount,day) VALUES (1,1,10,"2023/01/17");
+INSERT INTO harvests (machine_id,photo_id,amount,day) VALUES (1,2,10,"2023/01/18");
+INSERT INTO harvests (machine_id,photo_id,amount,day) VALUES (1,3,10,"2023/01/18");
 
 CREATE TABLE unharvests(
   id int AUTO_INCREMENT NOT NULL,
@@ -105,5 +109,5 @@ CREATE TABLE unharvests(
   FOREIGN KEY(machine_id) REFERENCES machines(id),
   FOREIGN KEY(photo_id) REFERENCES photos(id)
 );
-INSERT INTO unharvests (machine_id,photo_id,amount,day) VALUES (1,1,10,"2023/01/17");
+INSERT INTO unharvests (machine_id,photo_id,amount,day) VALUES (1,2,10,"2023/01/17");
 

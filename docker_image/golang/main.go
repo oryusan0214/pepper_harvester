@@ -26,8 +26,11 @@ func main() {
 	// ginを作成
 	router := gin.Default()
 	
-	router.GET("/Agrist/:username",get.GetUser(db))
-	router.GET("/farmland/:username",get.GetFarmland(db))
+	router.GET("/GET/Agrist/:username",get.GetUser(db))
+	router.GET("/GET/farmland/:username",get.GetFarmland(db))
+	router.GET("/GET/temphumi/:farmlandname",get.GetHumi(db))
+	router.GET("/GET/farmland/DATE/:name/:day/HARVEST",get.GetDayPhoto(db))
+	router.GET("/GET/farmland/WEEK/:name/:day/HARVEST",get.GetWeekPhoto(db))
 
 	err = router.Run(":8080")
 	if err !=nil{

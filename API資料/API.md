@@ -70,10 +70,7 @@
   ```json
   json[
     {
-        "day":"2023-01-17",
         "url":"https://???????/??????.jpg",
-        "temp":"20",
-        "humi":"40"
     }
         ・
         ・
@@ -149,10 +146,7 @@
   ```json
   json[
     {
-        "day":"2023-01-17",
         "url":"https://???????/??????.jpg",
-        "temp":"20",
-        "humi":"40"
     }
         ・
         ・
@@ -229,8 +223,8 @@
 ユーザーの登録されている機械、農耕地、収穫物の情報を更新する。
 
 - http://localhost:8080/PUT/agrist/:ID
-  >※:NAME＝ユーザーの固有ID
-  　http://localhost:8000/PUT/agrist/1
+  >※:NAME＝ユーザーの固有ID  
+    　http://localhost:8000/PUT/agrist/1
   ```json
   json[
     {
@@ -252,8 +246,8 @@
 #### 農作者の追加
 ユーザーの追加は外部サービスを利用している事もあり、ユーザーの名前とEmailをつかって識別を考えています。
 - http://localhost:8080/POST/user
-  >※:NAME＝ユーザー固有ID
-  　http://localhost:8000/POST/user
+  >※:NAME＝ユーザー固有ID  
+    　http://localhost:8000/POST/user
   ```json
   json[
     {
@@ -267,8 +261,8 @@
 ユーザーの登録されている機械、農耕地、収穫物の情報を更新する。
 
 - http://localhost:8080/POST/agrist/:ID
-  >※:NAME＝ユーザーの固有ID
-  　http://localhost:8000/POST/agrist/1
+  >※:NAME＝ユーザーの固有ID  
+    　http://localhost:8000/POST/agrist/1
   ```json
   json[
     {
@@ -290,8 +284,8 @@
 #### 農作者が所有している農耕地の温度と湿度情報
 
 - http://localhost:8080/POST/temphumi/:ID
-  >※:ID=機械number
-  　http://localhost:8080/POST/temphumi/0000a0000-b
+  >※:ID=機械number  
+    　http://localhost:8080/POST/temphumi/0000a0000-b
   ```json
   json[
     {

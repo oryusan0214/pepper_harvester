@@ -3,6 +3,17 @@ FROM mysql:latest
 COPY mysql/sql/ /docker-entrypoint-initdb.d/01_create_db.sql
 COPY mysql/conf.d/ //etc/mysql/conf.d/01_create_db.cnf
 
+RUN apt-get update && apt-get install -y locales \
+    && sed -i -e 's/# \(ja_JP.UTF-8\)/\1/' /etc/locale.gen \
+    && locale-gen \
+    && update-locale LANG=ja_JP.UTF-8
 RUN chmod 644 /etc/mysql/conf.d/my.cnf
+RUN localedef -f UTF-8 -i ja_JP.utf8
+
+ENV LC_ALL ja_JP.utf-8
+ENV TZ Asia/Tokyo
+ENV LANG=ja_JP.utf-8
+ENV LANGUAGE ja_JP:ja
+
 
 CMD ["mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]

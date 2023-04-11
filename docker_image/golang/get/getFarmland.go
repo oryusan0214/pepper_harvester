@@ -16,7 +16,8 @@ func GetFarmland(db *gorm.DB) func(ctx *gin.Context) {
 		username := ctx.Param("username")
 
 		if err != nil {
-			db.Debug().Table("agrists").
+			db.Debug().
+			Table("agrists").
 			Select([]string{ "farmlands.farmlandname","crops.cropsname","machines.machine_num"}).
 			Joins("JOIN possessions ON possessions.agrist_id = agrists.id").
 			Joins("JOIN farmlands ON possessions.farmland_id = farmlands.id").

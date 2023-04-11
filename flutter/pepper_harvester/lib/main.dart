@@ -1,41 +1,21 @@
 import 'dart:developer';
 
+
 import 'package:drag_and_drop_lists/drag_and_drop_item.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_list.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
 import 'package:flutter/material.dart';
 
-import 'package:http/.dart'.as http;
+import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'navigation_drawer.dart';
 
-class UserFarmland{
-  final String Name;
-  final String Crops;
-  final String MachineNum;
-  
-  UserFarmland({
-    required this.Name,
-    required this.Crops,
-    required this.MachineNum,
-  })
-  factory UserFarmland.fromJson(Map<String,dynamic> json)=>UserFarmland(
-    Name: json["Name"],
-     Crops: json["CropsName"],
-      MachineNum: json["MachineNum"]
-      );
-      Map<String,dynamic> toJson()=>{
-        "Name":Name,
-        "CropsName":Crops,
-        "MachineNume":MachineNum,
-      };
 
-}
-UserFarmland userFarmlandModelFromJson(String str) => UserFarmland.fromJson(json.decode(str));
-String userFarmlandModelToJson(UserFarmland farmlandInfo)=>json.encode(farmlandInfo.toJson());
+
 
 void main() {
   runApp(const MyApp());
@@ -54,6 +34,55 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+class UserFarmland{
+  final String Name;
+  final String Crops;
+  final String MachineNum;
+  
+  UserFarmland({
+    required this.Name,
+    required this.Crops,
+    required this.MachineNum,
+  });
+
+ factory UserFarmland.fromJson(Map<String,dynamic> json){ 
+  return UserFarmland(
+      Name: json["Name"],
+      Crops: json["CropsName"],
+      MachineNum: json["MachineNum"]
+      );
+ }
+  Map<String,dynamic> toJson()=>{
+        "Name":Name,
+        "CropsName":Crops,
+        "MachineNume":MachineNum,
+      };
+
+}
+class ApiClient{
+  Future<List<UserFarmland>?> fetchUsers()async{
+    final url = Uri.parse('http://localhost:8080/farmland/yamadaryunosuke');
+    try {
+      final response = await http.get(url);
+      if(response.statusCode==200){
+        final List<dynamic>body=jsonDecode(response.body);
+        final List<UserFarmland>users = body.map((dynamic user)=>UserFarmland.fromJson(user)).toList();
+        return users;
+      }
+      else{
+        return null;
+      }
+    }
+    catch(e){
+      print(e.toString());
+    }
+    return null;
+  }
+}
+
+UserFarmland userFarmlandModelFromJson(String str) => UserFarmland.fromJson(json.decode(str));
+String userFarmlandModelToJson(UserFarmland farmlandInfo)=>json.encode(farmlandInfo.toJson());
 
 class DragHandleExample extends StatefulWidget {
   const DragHandleExample({Key? key, required String title}) : super(key: key);
